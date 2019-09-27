@@ -13,18 +13,17 @@ pipeline{
             }
         }
 
-              stage('Code Quality')
-        {
-             environment {
-                scannerHome=tool 'sonar scanner'
-            }
+              stage ('Deploying War File'){
              steps{
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'bizeet_sonar', usernameVariable: 'USER', passwordVariable: 'PASS']])
-                 {
-                     sh "mvn $USER:$PASS -Dsonar.host.url=http://18.224.155.110:9000"
+                  withCredentials([usernamePassword(credentialsId: 'ashish_tomcat', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+        
+                     sh 'curl -u  $userId:$pass  http://ec2-13-233-78-62.ap-south-1.compute.amazonaws.com:8080/manager/text/undeploy?path=/superemp'
+                     sh  'curl -u  $userId:$pass --upload-file target/my-car-shop-${BUILD_NUMBER}.war http://ec2-13-233-78-62.ap-south-1.compute.amazonaws.com:8080/manager/text/deploy?config=file:/var/lib/tomcat8/my-car-shop-${BUILD_NUMBER}.war\\&path=/superemp'
                  }
              }
+    
          }
+    }
          
         }
     
