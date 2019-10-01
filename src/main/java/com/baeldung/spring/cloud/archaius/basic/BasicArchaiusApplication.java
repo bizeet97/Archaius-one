@@ -7,8 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class BasicArchaiusApplication extends SpringBootServletInitializer{
 
+    @Override
     public static void main(String[] args) {
         SpringApplication.run(BasicArchaiusApplication.class, args);
     }
-
 }
