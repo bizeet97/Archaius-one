@@ -5,10 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
-public class BasicArchaiusApplication extends SpringBootServletInitializer{
+@SpringBootApplication
+public class BasicArchaiusApplication extends ServletInitializer{
 
-    @Override
-    public static void main(String[] args) {
-        SpringApplication.run(BasicArchaiusApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(BasicArchaiusApplication.class, args);
+	}
+	@Override
+	  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+	      return builder.sources(BasicArchaiusApplication.class);
+	  }
 }
