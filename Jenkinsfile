@@ -20,7 +20,7 @@ pipeline{
            scannerHome=tool 'sonar scanner'
        }
             steps {
-                sh "mvn sonar:sonar -Dsonar.host.url=http://3.14.251.87:9000"
+                sh "mvn sonar:sonar -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
             }
          }
           
